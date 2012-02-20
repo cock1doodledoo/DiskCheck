@@ -1,9 +1,9 @@
-ƒfƒBƒXƒNŽg—p—¦ŠÄŽ‹ƒc[ƒ‹
+ãƒ‡ã‚£ã‚¹ã‚¯ä½¿ç”¨çŽ‡ç›£è¦–ãƒ„ãƒ¼ãƒ«
 
-ƒ[ƒJƒ‹‚ÌƒfƒBƒXƒNŽg—p—¦‚ðƒƒO‚É‘‚«o‚·‚¨ŽèŒyƒc[ƒ‹AWindows—pB
-Windows‚¾‚Ærlogin‚µ‚Ädf‚Æ‚©o—ˆ‚È‚¢‚ñ‚ÅAƒ^ƒXƒNƒXƒPƒWƒ…[ƒ‰‚ÉƒXƒNƒŠƒvƒg‚ð“o˜^‚µ‚Ä“f‚«o‚µ‚½ƒƒO‚ðŒ©‚éŽ–‚É‚µ‚½B
+ãƒ­ãƒ¼ã‚«ãƒ«ã®ãƒ‡ã‚£ã‚¹ã‚¯ä½¿ç”¨çŽ‡ã‚’ãƒ­ã‚°ã«æ›¸ãå‡ºã™ãŠæ‰‹è»½ãƒ„ãƒ¼ãƒ«ã€Windowsç”¨ã€‚
+Windowsã ã¨rloginã—ã¦dfã¨ã‹å‡ºæ¥ãªã„ã‚“ã§ã€ã‚¿ã‚¹ã‚¯ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ©ã«ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’ç™»éŒ²ã—ã¦åãå‡ºã—ãŸãƒ­ã‚°ã‚’è¦‹ã‚‹äº‹ã«ã—ãŸã€‚
 
 \vbs\
- +AppConfig.vbs   : ‹¤’ÊÝ’èƒtƒ@ƒCƒ‹
- +DiskCheck.wsf   : ƒXƒNƒŠƒvƒg–{‘Ìiƒ^ƒXƒNƒXƒPƒWƒ…[ƒ‰‚É“o˜^‚·‚éj
- +LocalConfig.vbs : ŒÂ•ÊÝ’èƒtƒ@ƒCƒ‹
+ +AppConfig.vbs   : å…±é€šè¨­å®šãƒ•ã‚¡ã‚¤ãƒ«
+ +DiskCheck.wsf   : ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“ï¼ˆã‚¿ã‚¹ã‚¯ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ©ã«ç™»éŒ²ã™ã‚‹ï¼‰
+ +LocalConfig.vbs : å€‹åˆ¥è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«
