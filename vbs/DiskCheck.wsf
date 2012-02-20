@@ -1,0 +1,86 @@
+<job id="DiskCheck">
+  <script language="VBScript" src="AppConfig.vbs"/>
+  <script language="VBScript" src="LocalConfig.vbs"/>
+  <script language="VBScript">
+  On Error Resume Next
+  Main
+  WScript.Quit Err.Number
+  
+  ' 主処理
+  Sub Main()
+    Call NetUse(HomePath, NetUser, NetUserPass)
+    ' ディスク使用率監視
+    If (ClusterVIP = "") Or Has(ClusterVIP) Then WriteLog
+    ' スクリプトファイルの自動アップデート
+    Files = Split(FileList,",")
+    For Each s In Files
+      Update s
+    Next
+  End Sub
+  
+  ' ネットワークリソース利用
+  Sub NetUse(Server, User, Pass)
+    Dim sh
+    Set sh = WScript.CreateObject("Wscript.Shell")
+    Call sh.Run("cmd /c net use " & Server & " /user:" & User & " " & Pass, 0, True)
+  End Sub
+  
+  ' アップデート
+  Sub Update(FileName)
+    Dim WorkPath, fs
+    WorkPath = Left(WScript.ScriptFullName, Len(WScript.ScriptFullName) - Len(WScript.ScriptName))
+    Set fs = CreateObject("Scripting.FileSystemObject")
+    Call fs.CopyFile(HomePath & "\vbs\" & FileName, WorkPath & FileName, True )
+  End Sub
+
+  ' ドライブ毎の空き領域を取得する
+  Function GetAvailableSpace(DrvPath)
+    Dim fso, d
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    Set d = fso.GetDrive(DrvPath)
+    GetAvailableSpace = FormatNumber(((d.TotalSize - d.FreeSpace) * 100 / d.TotalSize), 1) & " %"
+  End Function
+  
+  ' クラスタのアクティブ側か否かチェック
+  ' VIPを持っていたらTrue
+  Function Has(VIP)
+    Has = False
+    strComputer = "."
+    Set wmi = GetObject("winmgmts:\\" & strComputer & "\root\cimv2")
+    Set items = wmi.ExecQuery("Select * From Win32_NetworkAdapterConfiguration Where IPEnabled = True")
+    For Each item in items
+      For Each adr in item.IPAddress
+        If  adr = VIP Then Has = True
+      Next
+    Next
+  End Function
+  
+  ' ログファイルを開く
+  Function OpenFile(FileName)
+    Dim fs
+    ForOverWriting = 2
+    ForAppending = 8
+    Set fs = CreateObject("Scripting.FileSystemObject")
+    Set OpenFile = fs.OpenTextFile(FileName, ForOverWriting,True)
+  End Function
+  
+  ' 自分のコンピュータ名
+  Function GetHostname()
+    Set net = WScript.CreateObject("WScript.Network")
+    GetHostname = net.ComputerName
+  End Function
+  
+  ' ログ出力
+  Sub WriteLog()
+    LogName = Name
+    If LogName = "" Then LogName = GetHostname
+    Dim f, drvs
+    Set f = OpenFile(HomePath & "\" & LogName & ".log")
+    drvs = Split(DriveLetters, ",")
+    For Each s In drvs
+      Call f.WriteLine(Now & "	" & LogName & "	" & s & "	" & GetAvailableSpace(s))
+    Next
+    f.Close
+  End Sub
+  </Script>
+</job>
